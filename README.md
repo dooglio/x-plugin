@@ -2,7 +2,7 @@
 
 Claude skills from the [Sovereign Wolf X Growth Guide](https://sovereignwolf.pro).
 
-Includes 8 skills for growing an X account using Claude as your operator:
+Includes 9 skills for growing an X account using Claude as your operator:
 
 - **x-post-draft** — turn raw material into a post in your voice
 - **x-reply-trigger** — generate reply trigger options for any post
@@ -12,6 +12,7 @@ Includes 8 skills for growing an X account using Claude as your operator:
 - **x-growth-diagnosis** — diagnose stalled growth or dropping reply rates
 - **x-account-audit** — full account audit against the open-source X algorithm
 - **x-profile-review** — review your profile for credibility and conversion signals
+- **x-morning-checkin** — daily check-in on yesterday's post performance
 
 ## Install
 
