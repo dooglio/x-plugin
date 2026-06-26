@@ -1,0 +1,11 @@
+{
+  "name": "sovereign-wolf-x",
+  "description": "X growth skills for the Sovereign Wolf X Growth Guide — post drafting, queue review, reply triggers, voice calibration, and more.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Doug (Sovereign Wolf / @BowTiedYanqui)",
+    "url": "https://sovereignwolf.pro"
+  },
+  "homepage": "https://sovereignwolf.pro",
+  "repository": "https://github.com/dooglio/x-plugin"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "sovereign-wolf",
+  "description": "X growth skills from the Sovereign Wolf X Growth Guide. Covers post drafting, reply triggers, queue review, voice calibration, content ideas, and account diagnostics.",
+  "owner": {
+    "name": "Doug (Sovereign Wolf)",
+    "email": "dooglio@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "sovereign-wolf-x",
+      "source": "./",
+      "description": "Full X growth skill suite — post drafting, reply triggers, queue review, voice calibration, content ideas, growth diagnosis, account audit, and profile review.",
+      "homepage": "https://sovereignwolf.pro",
+      "repository": "https://github.com/dooglio/x-plugin",
+      "category": "productivity",
+      "keywords": ["x", "twitter", "growth", "content", "social-media"]
+    }
+  ]
+}
