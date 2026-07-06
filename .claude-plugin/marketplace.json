@@ -9,11 +9,11 @@
     {
       "name": "sovereign-wolf-x",
       "source": "./",
-      "description": "Full X growth skill suite — post drafting, reply triggers, queue review, voice calibration, content ideas, growth diagnosis, account audit, profile review, primary-source claim verification for the eBook, and structured end-of-session memory updates.",
+      "description": "Full X growth skill suite — post drafting, reply triggers, queue review and locked-queue confirmation, voice calibration, content ideas, growth diagnosis, account audit, profile review, primary-source claim verification for the eBook, structured end-of-session memory updates, multi-day post experiment tracking, and AutoDM funnel preflight.",
       "homepage": "https://sovereignwolf.pro",
       "repository": "https://github.com/dooglio/x-plugin",
       "category": "productivity",
-      "keywords": ["x", "twitter", "growth", "content", "social-media", "fact-checking", "memory"]
+      "keywords": ["x", "twitter", "growth", "content", "social-media", "fact-checking", "memory", "analytics", "automation"]
     }
   ]
 }
