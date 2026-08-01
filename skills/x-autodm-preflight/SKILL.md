@@ -2,7 +2,7 @@
 name: x-autodm-preflight
 description: >-
   Run a gated pre-launch check before any "reply WIFI" AutoDM trigger post fires
-  for @BowTiedYanqui. Use this skill whenever the user says "preflight the WIFI
+  on the user's X account. Use this skill whenever the user says "preflight the WIFI
   post," "AutoDM check," "is the funnel ready," "check before the trigger post,"
   "run the preflight," or mentions scheduling/publishing a reply-with-WIFI post
   that fires the AutoDM funnel. This gates a LIVE monetization funnel (the free

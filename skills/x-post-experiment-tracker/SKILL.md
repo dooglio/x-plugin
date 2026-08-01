@@ -1,7 +1,7 @@
 ---
 name: x-post-experiment-tracker
 description: >-
-  Track a flagged @BowTiedYanqui post's metrics across multiple days to test a
+  Track a flagged post's metrics across multiple days to test a
   growth hypothesis (e.g., "let a banger run" — posting less lets a strong post
   accumulate impressions longer). Use this skill whenever the user says "track
   this post," "day-2 pull," "day-3 numbers," "check the experiment," "how's the
@@ -71,10 +71,24 @@ Open that project and run this skill from there." Don't proceed until confirmed.
 
 1. **Collect inputs.** Gather (a) the post ID or post URL, (b) the hypothesis
    being tested (in one sentence), and (c) any prior pulls (dates + numbers). If
-   the user hasn't given prior pulls, ask, or read them from pasted context. If
-   there's no post ID/URL, find the post at `x.com/i/account_analytics/content`
-   and get its ID (read via `javascript_tool`/`innerText` under the browsing
-   rules). These are the only inputs you may ask for.
+   the user hasn't given prior pulls, ask, or read them from pasted context.
+   These are the only inputs you may ask for.
+
+   If there's no post ID/URL, get one from **TweetHunter Published Tweets** —
+   this is the canonical method. X analytics pages do **not** expose post status
+   links in the DOM, so you cannot read an ID off them, and X search is
+   unreliable (it returns off-account results). Navigate to
+   `app.tweethunter.io/queue?tab=published` and extract IDs in one call:
+
+   ```js
+   const links = [...document.querySelectorAll('a')]
+     .map(a => a.href)
+     .filter(h => /(?:twitter|x)\.com\/[^/]+\/status\/\d+/.test(h));
+   [...new Set(links)];
+   ```
+
+   This returns an ordered list, newest first. Match the target post by its hook
+   text, then build the analytics URL from its ID.
 
 2. **Pull current metrics.** Navigate to
    `x.com/i/account_analytics/content/[POST_ID]` and extract: impressions, likes,

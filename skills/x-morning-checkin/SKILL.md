@@ -19,24 +19,39 @@ Don't proceed until the project context is confirmed.
 
 You are running a daily morning check-in on yesterday's X post performance. This is a quick daily read — not a full audit. The goal is to know what moved, what didn't, and whether anything needs follow-up today.
 
+## Browsing rules (hard rules)
+
+- **Connect once:** `list_connected_browsers` → `select_browser` → `tabs_context_mcp` with `createIfEmpty: true`. Capture the `tabId` and pass it explicitly to every subsequent browser call.
+- **Never scroll or click through the UI with the computer tool.** Use `javascript_tool`: find the real scroll container (a `div` where `scrollHeight > clientHeight * 1.2` and `clientHeight > 300` — never `document.body` on X), and drive it with `container.scrollTop += container.clientHeight * 0.8`, waiting ~450ms between steps, max 4–6 steps per `javascript_tool` call.
+- **Read content via `javascript_tool` / `innerText`, never visually.**
+- **Don't use the date-range calendar picker.** It's fragile and some X UI versions won't accept a single-day range. Pull the 7-day window and filter to yesterday's date yourself in step 3.
+
 ## Workflow
 
-1. Navigate to `https://analytics.twitter.com/user/BowTiedYanqui/tweets` in Chrome.
+1. Connect to Chrome and navigate to the 7-day content analytics view, sorted by date descending:
 
-2. Click the **Posts** dropdown (top left, below the tab bar) and select **Posts and Replies**.
+   ```
+   https://x.com/i/account_analytics/content?type=posts&sort=date&dir=desc&days=7
+   ```
 
-3. Click the **calendar icon** (top right of the date controls, next to the 7D/2W/4W/3M buttons).
+   The user's handle is in the ACCOUNT CONTEXT section of the Project Instructions — the URL above is account-scoped to whoever is logged in, so you don't need to substitute it. Never hardcode a handle.
 
-4. In the calendar picker, select yesterday's date as both the start and end date. Yesterday is one day before today's date. Set both the start and end of the range to yesterday so only that single day's posts appear.
+   If the page was already open on a different sort, the URL parameter alone won't re-sort it. Click the Date header:
 
-5. Read the table. For each post visible, record:
+   ```js
+   const dateSpan = [...document.querySelectorAll('span')]
+     .find(el => el.textContent?.trim() === 'Date');
+   dateSpan?.parentElement?.click();
+   ```
+
+2. Read the rows via `innerText`. Row shape: line 3 = date, middle lines = post text, last 4 lines = Impressions / Likes / Replies / Reposts. Handle `K`/`M` suffixes when parsing.
+
+3. Filter to yesterday's date only — one calendar day before today. Discard everything else.
+
+4. For each of yesterday's posts, record:
    - Post text (first ~10 words is enough to identify it)
-   - Impressions
-   - Likes
-   - Replies
-   - Reposts
-
-6. Calculate reply rate for each: replies ÷ impressions × 100, rounded to two decimal places.
+   - Impressions, Likes, Replies, Reposts
+   - Reply rate: replies ÷ impressions × 100, rounded to two decimal places
 
 ## Output format
 
@@ -56,7 +71,7 @@ If a post is gaining traction (replies still coming in, high repost count), note
 ## Notes
 
 - This is a 5-minute read, not a full diagnosis. Don't extend it into strategy unless the user asks.
-- If the calendar picker won't select a single day (some X UI versions require a range), set start = yesterday and end = yesterday.
 - If yesterday had no posts, say so and close the session. Don't fill the gap with general advice.
 - Reply rate is the number that matters. A post with 1.1K impressions and 3 replies (0.27%) is underperforming. A post with 269 impressions and 2 replies (0.74%) is doing more with less.
-- If a post is gaining unusual traction for its age (e.g., a reply thread building, reposts from accounts outside the usual range), flag it specifically — that's worth watching or amplifying.
+- Numbers this fresh are noisy. A post less than 24 hours old is still accumulating, so treat a low reply rate as provisional rather than a verdict.
+- If a post is gaining unusual traction for its age (a reply thread building, reposts from accounts outside the usual range), flag it specifically — that's worth watching or amplifying.

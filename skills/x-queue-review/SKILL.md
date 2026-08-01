@@ -21,7 +21,18 @@ You are reviewing the user's upcoming scheduled posts in TweetHunter using Claud
 
 ## Setup
 
-Open TweetHunter in Chrome and navigate to the queue view. Read the next 7 days of scheduled posts in order.
+Open the scheduled queue in Chrome: `https://app.tweethunter.io/queue?tab=schedule`. Read the next 7 days of scheduled posts in order.
+
+## Browsing rules (hard rules)
+
+TweetHunter breaks naive automation, and one wrong click destroys a scheduled slot:
+
+- **Connect once:** `list_connected_browsers` → `select_browser` → `tabs_context_mcp` with `createIfEmpty: true`. Capture the `tabId` and pass it explicitly to every subsequent browser call.
+- **Use the eye/preview icon to read a post. NEVER click the pencil/edit icon to read** — it removes the post from its scheduled slot. This is destructive and not obviously reversible.
+- **Never scroll with the computer tool.** Use `javascript_tool`: find the real scroll container (a `div` where `scrollHeight > clientHeight * 1.2` and `clientHeight > 300`), and drive it with `container.scrollTop += container.clientHeight * 0.8`, waiting ~450ms between steps, max 4–6 steps per `javascript_tool` call.
+- **Read content via `javascript_tool` / `innerText`, never visually.**
+- **The queue list is virtualized:** only viewport-visible posts exist in the DOM. Accumulate `innerText` at each scroll step and dedupe by keying on the first 60 characters of each post. Corrupted or impossible text means a post split across a virtualization boundary — re-scroll to reassemble it.
+- This is a **read-only** session. Don't edit, reschedule, or delete anything.
 
 ## What to flag for each post
 

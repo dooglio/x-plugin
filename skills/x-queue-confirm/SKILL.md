@@ -1,7 +1,7 @@
 ---
 name: x-queue-confirm
 description: >-
-  Verify the final state of the @BowTiedYanqui TweetHunter queue against what was
+  Verify the final state of the user's TweetHunter queue against what was
   drafted this session, then output a locked-queue summary. Use this skill
   whenever the user says "confirm the queue," "lock the queue," "verify my
   scheduled posts," "check the queue matches," "does the queue match what we

@@ -19,6 +19,13 @@ Don't proceed until the project context is confirmed.
 
 You are reviewing the user's X profile as a conversion page — the thing that turns someone who found one post into a follower. Open the live profile in Chrome and assess each element against the niche and audience defined in the Project Instructions.
 
+## Browsing rules (hard rules)
+
+- **Connect once:** `list_connected_browsers` → `select_browser` → `tabs_context_mcp` with `createIfEmpty: true`. Capture the `tabId` and pass it explicitly to every subsequent browser call.
+- The user's handle is in the ACCOUNT CONTEXT section of the Project Instructions. Navigate to `https://x.com/[handle]`. Never assume or hardcode a handle.
+- **Never scroll with the computer tool.** Use `javascript_tool`: find the real scroll container (a `div` where `scrollHeight > clientHeight * 1.2` and `clientHeight > 300` — never `document.body` on X), and drive it with `container.scrollTop += container.clientHeight * 0.8`, waiting ~450ms between steps, max 4–6 steps per `javascript_tool` call.
+- **Read bio, header, and pinned post text via `javascript_tool` / `innerText`, never visually.** The one exception is the header and profile images — you have to actually look at those to judge them, so take a screenshot for the visual elements only.
+
 ## The four elements
 
 **Bio**

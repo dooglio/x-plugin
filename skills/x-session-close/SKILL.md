@@ -1,7 +1,7 @@
 ---
 name: x-session-close
 description: >-
-  Run a structured end-of-session memory update for the @BowTiedYanqui X account
+  Run a structured end-of-session memory update for the user's X account
   workflow so learnings from the session don't get lost. Use this skill whenever
   the user says "close out this session," "session close," "update memory before
   we wrap," "wrap up," "let's finish up," "save what we learned," "update the
