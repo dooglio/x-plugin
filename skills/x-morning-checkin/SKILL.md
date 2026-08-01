@@ -25,6 +25,7 @@ You are running a daily morning check-in on yesterday's X post performance. This
 - **Never scroll or click through the UI with the computer tool.** Use `javascript_tool`: find the real scroll container (a `div` where `scrollHeight > clientHeight * 1.2` and `clientHeight > 300` — never `document.body` on X), and drive it with `container.scrollTop += container.clientHeight * 0.8`, waiting ~450ms between steps, max 4–6 steps per `javascript_tool` call.
 - **Read content via `javascript_tool` / `innerText`, never visually.**
 - **Don't use the date-range calendar picker.** It's fragile and some X UI versions won't accept a single-day range. Pull the 7-day window and filter to yesterday's date yourself in step 3.
+- **If browsing fails twice, stop.** Report what you were trying to reach and what you saw instead. Don't retry variations — hand it back to the user, who can usually do it in seconds. This is a five-minute check-in; it is never worth a long browsing struggle.
 
 ## Workflow
 

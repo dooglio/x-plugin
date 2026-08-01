@@ -56,6 +56,9 @@ these rules — they exist because X and TweetHunter break naive automation:
   click the pencil/edit icon to read** — it removes the post from its queue slot.
   Published posts' source of truth is `app.tweethunter.io/queue?tab=published`;
   the live schedule is `app.tweethunter.io/queue?tab=schedule`.
+- **If browsing fails twice, stop.** Report what you were trying to reach and
+  what you saw instead. Don't retry variations — hand it back to the user, who
+  can usually do it in seconds.
 
 ## Format rules (used in step 6)
 

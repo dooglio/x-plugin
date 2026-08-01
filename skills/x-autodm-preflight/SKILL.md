@@ -52,6 +52,9 @@ Open that project and run this skill from there." Don't proceed until confirmed.
   parameters, not the UI calendar controls. TweetHunter published tab:
   `app.tweethunter.io/queue?tab=published`; schedule tab:
   `app.tweethunter.io/queue?tab=schedule`.
+- **If browsing fails twice, stop.** Report what you were trying to reach and
+  what you saw instead. Don't retry variations — hand it back to the user, who
+  can usually do it in seconds.
 
 ## Format rules (used in step 6)
 

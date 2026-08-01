@@ -31,6 +31,7 @@ X breaks naive automation. Obey these or the data will be wrong:
 - **Never scroll with the computer tool.** Use `javascript_tool`: find the real scroll container (a `div` where `scrollHeight > clientHeight * 1.2` and `clientHeight > 300` — never `document.body` on X), and drive it with `container.scrollTop += container.clientHeight * 0.8`, waiting ~450ms between steps, max 4–6 steps per `javascript_tool` call.
 - **Read content via `javascript_tool` / `innerText`, never visually.**
 - **X lists are virtualized:** only viewport-visible rows exist in the DOM. Accumulate `innerText` at each scroll step and dedupe with a `Set` keyed on the first 60 characters of each row. Corrupted or impossible numbers mean a row split across a virtualization boundary — re-scroll to reassemble it.
+- **If browsing fails twice, stop.** Report what you were trying to reach and what you saw instead. Don't retry variations — hand it back to the user, who can usually do it in seconds.
 
 ## Analytics reference
 

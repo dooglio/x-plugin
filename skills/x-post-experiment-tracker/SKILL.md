@@ -51,6 +51,9 @@ Open that project and run this skill from there." Don't proceed until confirmed.
 - **On any analytics date pull, set the end date one day forward.** A same
   start/end date silently drops late-day posts. Navigate with explicit URL date
   parameters, not the UI calendar controls.
+- **If browsing fails twice, stop.** Report what you were trying to reach and
+  what you saw instead. Don't retry variations — hand it back to the user, who
+  can usually do it in seconds.
 
 ## Benchmarks and thresholds (used in steps 2 and 4)
 

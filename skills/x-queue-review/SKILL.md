@@ -32,6 +32,7 @@ TweetHunter breaks naive automation, and one wrong click destroys a scheduled sl
 - **Never scroll with the computer tool.** Use `javascript_tool`: find the real scroll container (a `div` where `scrollHeight > clientHeight * 1.2` and `clientHeight > 300`), and drive it with `container.scrollTop += container.clientHeight * 0.8`, waiting ~450ms between steps, max 4–6 steps per `javascript_tool` call.
 - **Read content via `javascript_tool` / `innerText`, never visually.**
 - **The queue list is virtualized:** only viewport-visible posts exist in the DOM. Accumulate `innerText` at each scroll step and dedupe by keying on the first 60 characters of each post. Corrupted or impossible text means a post split across a virtualization boundary — re-scroll to reassemble it.
+- **If browsing fails twice, stop.** Report what you were trying to reach and what you saw instead. Don't retry variations — hand it back to the user, who can usually do it in seconds.
 - This is a **read-only** session. Don't edit, reschedule, or delete anything.
 
 ## What to flag for each post
